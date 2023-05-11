@@ -1,6 +1,6 @@
 import { useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, Environment } from '@react-three/drei';
+import { useGLTF, Environment, Detailed } from '@react-three/drei';
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
 import { MathUtils } from 'three';
 
@@ -49,12 +49,27 @@ function Banana({ index, pZ, speed }) {
 
   useFrame((state, delta) => {
     // Make the X position responsive, slowly scroll objects up at the Y, distribute it along the Z
-    // dt is the delta, the time between this frame and the previous, we can use it to be independent of the screens refresh rate
-    // We cap dt at 0.1 because now it can't accumulate while the user changes the tab, it will simply stop
-    ref.current.position.set(data.pX * width, (data.pY += 0.025), pZ);
-    if (data.pY > height) data.pY = -height;
-    ref.current.rotation.set((data.rX += 0.001), (data.rY += 0.001), (data.rZ += 0.001));
+    // Delta is the time between this frame and the previous, can use it to be independent of the screens refresh rate
+    ref.current.position.set(data.pX * width, (data.pY += delta * speed), pZ);
+
+    // Rotate the object around
+    ref.current.rotation.set(
+      (data.rX += delta / data.spin),
+      Math.sin(index * 1000 + state.clock.elapsedTime / 10) * Math.PI,
+      (data.rZ += delta / data.spin)
+    );
+
+    // If they're too far up, set them back to the bottom
+    if (data.pY > height * (index === 0 ? 4 : 1)) data.pY = -(height * (index === 0 ? 4 : 1));
   });
 
-  return <mesh ref={ref} geometry={nodes.Banana.geometry} material={materials.Skin} material-emissive='orange' />;
+  // Using drei's detailed is a nice trick to reduce the vertex count because
+  // Don't need high resolution for objects in the distance. Model contains 3 decimated meshes
+  return (
+    <Detailed ref={ref} distances={[0, 65, 80]}>
+      <mesh geometry={nodes.banana_high.geometry} material={materials.skin} material-emissive='#ff9f00' />
+      <mesh geometry={nodes.banana_mid.geometry} material={materials.skin} material-emissive='#ff9f00' />
+      <mesh geometry={nodes.banana_low.geometry} material={materials.skin} material-emissive='#ff9f00' />
+    </Detailed>
+  );
 }
