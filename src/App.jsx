@@ -16,7 +16,12 @@ export default function App() {
         <Bananas speed={speed} />
         <FadeIn />
       </Suspense>
+
       <Overlay />
+
+      <Speed>
+        <input type='range' min='0' max='10' value={speed} step='1' onChange={(e) => set(e.target.value)} />
+      </Speed>
     </>
   );
 }
@@ -35,4 +40,18 @@ const FadeIn = styled.div`
   pointer-events: none;
   background: #ffd863;
   animation: ${fade} 4s normal forwards ease-in-out;
+`;
+
+const Speed = styled.div`
+  position: absolute;
+  bottom: 50%;
+  right: 5vw;
+  font-family: 'Inter';
+  font-weight: 400;
+  line-height: 1em;
+  letter-spacing: -0.01em;
+  font-size: 12px;
+  transform: rotate(90deg) translate3d(50%, 0, 0);
+  transform-origin: 100% 50%;
+  color: 'black';
 `;
