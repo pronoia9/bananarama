@@ -16,9 +16,7 @@ export default function App() {
         <Bananas speed={speed} />
         <FadeIn />
       </Suspense>
-
       <Overlay />
-
       <Speed>
         <input type='range' min='0' max='10' value={speed} step='1' onChange={(e) => set(e.target.value)} />
       </Speed>
