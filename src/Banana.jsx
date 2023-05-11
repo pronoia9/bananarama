@@ -12,7 +12,7 @@ export default function Bananas({ speed = 1, count = 100, depth = 80 }) {
 
       {/* Lights */}
       {/* <ambientLight intensity={0.2} /> */}
-      <pointLight position={[10, 10, 10]} intensity={0.5} />
+      <pointLight position={[10, 20, 10]} penumbra={1} intensity={3} color='orange' />
 
       <Suspense fallback={null}>
         {/* Objects */}
