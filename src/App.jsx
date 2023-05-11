@@ -3,48 +3,38 @@ import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 
-function Box({ z }) {
+function Banana({ z }) {
+  const { nodes, materials } = useGLTF('/banana.glb');
   const ref = useRef();
   const { viewport, camera } = useThree();
   const { width, height } = viewport.getCurrentViewport(camera, [0, 0, z]);
 
   const [data, setData] = useState({
-    x: THREE.MathUtils.randFloatSpread(2),
-    y: THREE.MathUtils.randFloatSpread(height),
+    pX: THREE.MathUtils.randFloatSpread(2),
+    pY: THREE.MathUtils.randFloatSpread(height),
+    rX: Math.random() * Math.PI,
+    rY: Math.random() * Math.PI,
+    rZ: Math.random() * Math.PI,
   });
 
   useFrame((state) => {
-    ref.current.position.set(data.x * width, (data.y += 0.1), z);
-    if (data.y > height / 1.5) data.y = -height / 1.5;
+    ref.current.position.set(data.pX * width, (data.pY += 0.05), z);
+    if (data.pY > height / 1.5) data.pY = -height / 1.5;
+    ref.current.rotation.set((data.rX += 0.01), (data.rY += 0.004), (data.rZ += 0.005));
   });
 
-  return (
-    <mesh ref={ref}>
-      <boxGeometry />
-      <meshBasicMaterial color='orange' />
-    </mesh>
-  );
+  return <mesh ref={ref} geometry={nodes.Banana.geometry} material={materials.Skin} material-emissive='orange' />;
 }
 
-function Banana(props) {
-  const { nodes, materials } = useGLTF('/banana.glb');
-  return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Banana.geometry} material={materials.Skin} rotation={[-Math.PI / 2, 0, 0]} material-emissive='orange' />
-    </group>
-  );
-}
-
-export default function App({ count = 10 }) {
+export default function App({ count = 100 }) {
   return (
     <Canvas>
-      {/* {Array.from({ length: count }, (_, i) => (
-        <Box key={i} z={-i} />
-      ))} */}
       <ambientLight intensity={0.2} />
       <pointLight position={[10, 10, 10]} intensity={0.5} />
       <Suspense fallback={null}>
-        <Banana scale={0.5} />
+        {Array.from({ length: count }, (_, i) => (
+          <Banana key={i} z={-i} />
+        ))}
         <Environment preset='sunset' />
       </Suspense>
     </Canvas>
