@@ -18,7 +18,7 @@ function Banana({ z }) {
   });
 
   useFrame((state) => {
-    ref.current.position.set(data.pX * width, (data.pY += 0.05), z);
+    ref.current.position.set(data.pX * width, (data.pY += 0.025), z);
     if (data.pY > height / 1.5) data.pY = -height / 1.5;
     ref.current.rotation.set((data.rX += 0.01), (data.rY += 0.004), (data.rZ += 0.005));
   });
