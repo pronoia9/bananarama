@@ -1,4 +1,4 @@
-import { useRef, useState, Suspense } from 'react';
+import { useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Environment, Detailed } from '@react-three/drei';
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
@@ -14,19 +14,17 @@ export default function Bananas({ speed = 1, count = 100, depth = 80 }) {
       {/* <ambientLight intensity={0.2} /> */}
       <pointLight position={[10, 20, 10]} penumbra={1} intensity={3} color='orange' />
 
-      <Suspense fallback={null}>
-        {/* Objects */}
-        {Array.from({ length: count }, (_, i) => (
-          <Banana key={i} index={i} pZ={(-i / count) * depth - 20} speed={speed} />
-        ))}
+      {/* Objects */}
+      {Array.from({ length: count }, (_, i) => (
+        <Banana key={i} index={i} pZ={(-i / count) * depth - 20} speed={speed} />
+      ))}
 
-        {/* Effects */}
-        <EffectComposer multisampling={0}>
-          <DepthOfField target={[0, 0, depth / 2]} focalLength={0.4} bokehScale={14} height={700} />
-        </EffectComposer>
+      {/* Effects */}
+      <EffectComposer multisampling={0}>
+        <DepthOfField target={[0, 0, depth / 2]} focalLength={0.4} bokehScale={14} height={700} />
+      </EffectComposer>
 
-        <Environment preset='sunset' />
-      </Suspense>
+      <Environment preset='sunset' />
     </Canvas>
   );
 }
