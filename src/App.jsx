@@ -1,8 +1,8 @@
 import { useRef, useState, Suspense } from 'react';
-import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
+import { MathUtils } from 'three';
 
 export default function App({ count = 100, depth = 80 }) {
   return (
@@ -34,15 +34,15 @@ function Banana({ pZ }) {
   const { viewport, camera } = useThree();
   const { width, height } = viewport.getCurrentViewport(camera, [0, 0, pZ]);
 
-  const [data, setData] = useState({
-    pX: THREE.MathUtils.randFloatSpread(2),
-    pY: THREE.MathUtils.randFloatSpread(height),
+  const [data] = useState({
+    pX: MathUtils.randFloatSpread(2),
+    pY: MathUtils.randFloatSpread(height),
     rX: Math.random() * Math.PI,
     rY: Math.random() * Math.PI,
     rZ: Math.random() * Math.PI,
   });
 
-  useFrame((state) => {
+  useFrame(() => {
     ref.current.position.set(data.pX * width, (data.pY += 0.025), pZ);
     if (data.pY > height) data.pY = -height;
     ref.current.rotation.set((data.rX += 0.001), (data.rY += 0.001), (data.rZ += 0.001));
