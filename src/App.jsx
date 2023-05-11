@@ -4,7 +4,7 @@
 
 import { Suspense, useState } from 'react';
 
-import Bananas from './components/Banana';
+import { Bananas, Overlay } from './components/';
 
 export default function App() {
   const [speed, setSpeed] = useState(1);
@@ -14,6 +14,7 @@ export default function App() {
       <Suspense fallback={null}>
         <Bananas speed={speed} />
       </Suspense>
+      <Overlay />
     </>
   );
 }
