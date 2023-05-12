@@ -6,9 +6,12 @@ export default function Overlay() {
   return (
     <Container>
       <Title>
-        Banana
-        <br />
-        Bliss
+        <h1>
+          Banana
+          <br />
+          Bliss —
+        </h1>
+        <p>A-peeling treats. The ultimate fruit. Go bananas! ⎯</p>
       </Title>
       <Hamburger>
         <div />
@@ -47,18 +50,20 @@ export default function Overlay() {
 const Container = styled.div`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 16px;
+  & h1 {
+    padding: 0;
+    margin: 0 0 0.05em 0;
+    font-family: 'Righteous', cursive;
+    font-weight: 400;
+    font-size: min(14vw, 10em);
+    line-height: 0.85em;
+  }
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
   position: absolute;
   top: 5vw;
   left: 5vw;
-  padding: 0;
-  margin: 0 0 0.05em 0;
-  font-family: 'Righteous', cursive;
-  font-weight: 400;
-  font-size: min(14vw, 10em);
-  line-height: 0.85em;
 `;
 
 const Hamburger = styled.div`
