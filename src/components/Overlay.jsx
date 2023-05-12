@@ -11,8 +11,28 @@ export default function Overlay() {
         Bliss
       </Title>
       <Hamburger></Hamburger>
-      <Description></Description>
-      <Poem></Poem>
+      <Description>
+        The fruitiest place on the web
+        <br />
+        Where every day is a-peeling
+      </Description>
+      <Poem>
+        Peel the skin away,
+        <br /> Reveal the yellow inside,
+        <br />
+        Bananas are a snack,
+        <br />
+        That you just can't hide.
+        <br />
+        <br />
+        Add them to your cereal,
+        <br />
+        Or top them with some cream,
+        <br />
+        Bananas are a treat,
+        <br />
+        That's always in your dream.
+      </Poem>
       <Sketch>
         <BananaSketch />
       </Sketch>
