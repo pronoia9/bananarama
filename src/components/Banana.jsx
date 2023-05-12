@@ -8,7 +8,7 @@ export default function Bananas({ speed = 1, count = 100, depth = 80 }) {
   return (
     // No need for antialias (faster), dpr clamps the resolution to 1.5 (also faster than full resolution)
     <Canvas gl={{ alpha: false, antialias: false }} camera={{ position: [0, 0, 10], fov: 20, near: 0.01, far: depth + 15 }}>
-      <color args={['#FFE47D']} attach='background' />
+      <color args={['#FBE195']} attach='background' />
 
       {/* Lights */}
       {/* <ambientLight intensity={0.2} /> */}
