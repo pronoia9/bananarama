@@ -44,7 +44,6 @@ const Speed = styled.div`
   position: absolute;
   bottom: 50%;
   right: 5vw;
-  font-family: 'Inter';
   font-weight: 400;
   line-height: 1em;
   letter-spacing: -0.01em;
