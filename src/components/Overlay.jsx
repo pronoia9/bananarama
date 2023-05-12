@@ -10,7 +10,11 @@ export default function Overlay() {
         <br />
         Bliss
       </Title>
-      <Hamburger></Hamburger>
+      <Hamburger>
+        <div />
+        <div />
+        <div />
+      </Hamburger>
       <Description>
         The fruitiest place on the web
         <br />
