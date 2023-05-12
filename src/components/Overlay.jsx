@@ -7,9 +7,9 @@ export default function Overlay() {
     <Container>
       <Title>
         <h1>
-          Banana
+          BANANA
           <br />
-          Bliss —
+          BLISS —
         </h1>
         <p>A-peeling treats. The ultimate fruit. Go bananas! ⎯</p>
       </Title>
