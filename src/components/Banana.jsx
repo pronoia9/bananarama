@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, Environment, Detailed } from '@react-three/drei';
+import { useGLTF, Environment, Detailed, Stage } from '@react-three/drei';
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
 import { MathUtils } from 'three';
 
@@ -24,7 +24,8 @@ export default function Bananas({ speed = 1, count = 100, depth = 80 }) {
         <DepthOfField target={[0, 0, depth / 2]} focalLength={0.4} bokehScale={14} height={700} />
       </EffectComposer>
 
-      <Environment preset='sunset' />
+      {/* <Environment preset='sunset' /> */}
+      <Stage environment={{ files: 'venice_sunset_1k.hdr' }} center />
     </Canvas>
   );
 }
