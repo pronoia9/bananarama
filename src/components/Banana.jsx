@@ -67,8 +67,8 @@ function Banana({ index, pZ, speed }) {
   return (
     <Detailed ref={ref} distances={[0, 65, 80]}>
       <mesh geometry={nodes.banana_high.geometry} material={materials.skin} material-emissive='#ff9f00' />
-      <mesh geometry={nodes.banana_mid.geometry} material={materials.skin} material-emissive='#ff9f00' />
-      <mesh geometry={nodes.banana_low.geometry} material={materials.skin} material-emissive='#ff9f00' />
+      {/* <mesh geometry={nodes.banana_mid.geometry} material={materials.skin} material-emissive='#ff9f00' /> */}
+      {/* <mesh geometry={nodes.banana_low.geometry} material={materials.skin} material-emissive='#ff9f00' /> */}
     </Detailed>
   );
 }
