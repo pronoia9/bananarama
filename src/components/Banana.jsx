@@ -25,7 +25,7 @@ export default function Bananas({ speed = 1, count = 100, depth = 80 }) {
       </EffectComposer>
 
       {/* <Environment preset='sunset' /> */}
-      <Stage environment={{ files: 'venice_sunset_1k.hdr' }} center />
+      <Stage environment={{ files: 'venice_sunset_1k.hdr' }} />
     </Canvas>
   );
 }
